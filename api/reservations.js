@@ -39,11 +39,17 @@ module.exports=async(req,res)=>{
    const requestHash=R.hash(b.requestKey),payloadHash=R.hash(JSON.stringify({...clean,consentedAt:undefined}));
    const result=await R.transaction(s=>{
     const prev=s.bookings.find(x=>x.requestHash===requestHash);if(prev){if(prev.payloadHash!==payloadHash)throw R.fail('새 예약 신청 버튼을 누른 후 다시 작성해 주세요.',409);return {booking:R.publicBooking(prev),code};}
-    R.rate(s,'create:'+key,5,60);R.rate(s,'phone:'+R.hash(clean.phone),5,60);
+    R.rate(s,'create:'+key,30,60);R.rate(s,'phone:'+R.hash(clean.phone),5,60);
     if((s.blockedDates||[]).includes(clean.date))throw R.fail('해당 날짜는 온라인 예약이 마감되었습니다. 다른 날짜를 선택해 주세요.');
     if(s.bookings.length>=3000)throw R.fail('온라인 접수가 일시 중단되었습니다. 전화로 문의해 주세요.',503);
     const now=new Date().toISOString();const booking={...clean,id,codeHash:R.hash(code),requestHash,payloadHash,status:'pending',createdAt:now,updatedAt:now};s.bookings.push(booking);return {booking:R.publicBooking(booking),code};
    });return send(201,result);
+  }
+  if(b.action==='phone-lookup'){
+   const phone=String(b.phone||'').replace(/[ -]/g,'');const name=String(b.name||'').trim();
+   if(!/^01[016789]\d{7,8}$/.test(phone)||!name||name.length>30)throw R.fail('예약자 이름과 휴대폰 번호를 확인해 주세요.');
+   const rows=await R.transaction(s=>{R.rate(s,'phone-lookup:'+key,10,15);return s.bookings.filter(x=>x.phone===phone&&x.name===name).map(x=>({id:x.id,date:x.date,time:x.time,status:x.status}));});
+   return send(200,{bookings:rows});
   }
   if(['lookup','cancel'].includes(b.action)){
    const result=await R.transaction(s=>{
