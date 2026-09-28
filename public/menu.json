@@ -7,7 +7,12 @@
     "note": "공깃밥 포함",
     "description": "직화로 볶아낸 쭈꾸미를 든든한 한 끼로.",
     "minimum": 2,
-    "image": "/images/octopus.webp"
+    "image": "/images/octopus.webp",
+    "tags": [
+      "직화쭈꾸미",
+      "불향",
+      "한식 점심"
+    ]
   },
   {
     "slug": "bulgogi",
@@ -17,7 +22,12 @@
     "note": "공깃밥 별도",
     "description": "식사로도, 술안주로도 인기 있는 메뉴.",
     "minimum": 2,
-    "image": "/images/bulgogi.webp"
+    "image": "/images/bulgogi.webp",
+    "tags": [
+      "파불고기",
+      "한식",
+      "식사·술안주"
+    ]
   },
   {
     "slug": "jussam",
@@ -27,7 +37,12 @@
     "note": "공깃밥 별도",
     "description": "쭈꾸미와 삼겹살을 함께 즐기는 한 접시.",
     "minimum": 2,
-    "image": "/images/jussam.webp"
+    "image": "/images/jussam.webp",
+    "tags": [
+      "쭈꾸미삼겹살",
+      "쭈삼불고기",
+      "함께 먹는 메뉴"
+    ]
   },
   {
     "slug": "spicy-ribs",
@@ -37,7 +52,12 @@
     "note": "공깃밥 별도",
     "description": "노가정의 시작을 함께한 창업 메뉴.",
     "minimum": 2,
-    "image": "/images/spicy-ribs.webp"
+    "image": "/images/spicy-ribs.webp",
+    "tags": [
+      "동인동찜갈비",
+      "매운갈비찜",
+      "노가정 창업메뉴"
+    ]
   },
   {
     "slug": "duck",
@@ -47,7 +67,12 @@
     "note": "공깃밥 별도",
     "description": "더덕·오리·쭈꾸미의 조화로운 만남.",
     "minimum": 2,
-    "image": "/images/duck.webp"
+    "image": "/images/duck.webp",
+    "tags": [
+      "오리삼합",
+      "더덕",
+      "철판구이"
+    ]
   },
   {
     "slug": "iron-octopus",
@@ -57,7 +82,12 @@
     "note": "공깃밥 별도",
     "description": "쭈꾸미·삼겹살·통새우를 철판 위에.",
     "minimum": 2,
-    "image": "/images/iron-octopus.webp"
+    "image": "/images/iron-octopus.webp",
+    "tags": [
+      "쭈꾸미철판볶음",
+      "삼겹살",
+      "통새우"
+    ]
   },
   {
     "slug": "ribs",
@@ -67,7 +97,12 @@
     "note": "공깃밥 별도",
     "description": "함께 나누기 좋은 갈비 한 상.",
     "minimum": 2,
-    "image": "/images/ribs.webp"
+    "image": "/images/ribs.webp",
+    "tags": [
+      "석갈비",
+      "갈비",
+      "가족 식사"
+    ]
   },
   {
     "slug": "cutlet",
@@ -77,7 +112,12 @@
     "note": "밥 포함",
     "description": "한 끼 든든하게 즐기는 수제돈까스.",
     "minimum": 1,
-    "image": "/images/cutlet.webp"
+    "image": "/images/cutlet.webp",
+    "tags": [
+      "수제돈까스",
+      "등심돈까스",
+      "밥 포함"
+    ]
   },
   {
     "slug": "cheese",
@@ -87,7 +127,12 @@
     "note": "밥 포함",
     "description": "통모짜렐라 치즈를 담은 돈까스.",
     "minimum": 1,
-    "image": "/images/cheese.webp"
+    "image": "/images/cheese.webp",
+    "tags": [
+      "치즈돈까스",
+      "모짜렐라",
+      "밥 포함"
+    ]
   },
   {
     "slug": "pho",
@@ -97,7 +142,12 @@
     "note": "",
     "description": "따뜻한 국물과 소고기를 함께.",
     "minimum": 1,
-    "image": "/images/pho.webp"
+    "image": "/images/pho.webp",
+    "tags": [
+      "소고기쌀국수",
+      "국물요리",
+      "혼밥"
+    ]
   },
   {
     "slug": "soup",
@@ -107,7 +157,12 @@
     "note": "공깃밥 포함",
     "description": "갈비와 따뜻한 국물로 채우는 한 끼.",
     "minimum": 1,
-    "image": "/images/soup.webp"
+    "image": "/images/soup.webp",
+    "tags": [
+      "갈비탕",
+      "공깃밥 포함",
+      "든든한 점심"
+    ]
   },
   {
     "slug": "soba",
@@ -117,7 +172,12 @@
     "note": "",
     "description": "시원하게 즐기는 메밀소바.",
     "minimum": 1,
-    "image": "/images/soba.webp"
+    "image": "/images/soba.webp",
+    "tags": [
+      "메밀소바",
+      "시원한 면요리",
+      "1인 식사"
+    ]
   },
   {
     "slug": "pizza",
@@ -127,7 +187,12 @@
     "note": "",
     "description": "함께 나누는 치즈 피자.",
     "minimum": 1,
-    "image": "/images/pizza.webp"
+    "image": "/images/pizza.webp",
+    "tags": [
+      "고르곤졸라피자",
+      "치즈피자",
+      "곁들임"
+    ]
   },
   {
     "slug": "pizza-shrimp",
@@ -137,7 +202,12 @@
     "note": "",
     "description": "피자와 새우튀김을 함께 즐기는 세트.",
     "minimum": 1,
-    "image": "/images/pizza-shrimp.webp"
+    "image": "/images/pizza-shrimp.webp",
+    "tags": [
+      "피자세트",
+      "새우튀김",
+      "함께 나누는 메뉴"
+    ]
   },
   {
     "slug": "dumpling",
@@ -147,7 +217,12 @@
     "note": "4개",
     "description": "식사에 곁들이기 좋은 왕만두.",
     "minimum": 1,
-    "image": "/images/dumpling.webp"
+    "image": "/images/dumpling.webp",
+    "tags": [
+      "메밀왕만두",
+      "왕만두",
+      "곁들임"
+    ]
   },
   {
     "slug": "roll",
@@ -157,6 +232,11 @@
     "note": "2개",
     "description": "함께 나누기 좋은 메밀전병.",
     "minimum": 1,
-    "image": "/images/roll.webp"
+    "image": "/images/roll.webp",
+    "tags": [
+      "메밀전병",
+      "전병",
+      "곁들임"
+    ]
   }
 ]

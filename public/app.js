@@ -8,13 +8,13 @@ let menus=[];
 function renderMenu(category='전체'){
  const grid=document.querySelector('#menu-grid');grid.replaceChildren();
  for(const item of menus.filter(m=>category==='전체'||m.category===category)){
-  const card=document.createElement('article');card.className='menu-card';
+  const card=document.createElement('article');card.className='menu-card';card.id='menu-'+item.slug;
   const wrap=document.createElement('div');wrap.className='menu-image';
-  const img=document.createElement('img');img.src=item.image;img.alt=item.name;img.loading='lazy';img.width=700;img.height=525;wrap.append(img);
+  const img=document.createElement('img');img.src=item.image;img.alt='청주 노가정 '+item.name;img.loading='lazy';img.width=700;img.height=525;wrap.append(img);
   const top=document.createElement('div');top.className='card-top';const title=document.createElement('h3');title.textContent=item.name;const price=document.createElement('span');price.className='price';price.textContent=item.price.toLocaleString('ko-KR')+'원';top.append(title,price);
   const desc=document.createElement('p');desc.textContent=item.description;
   const tags=document.createElement('p');tags.className='tags';tags.textContent=[item.note,item.minimum===2?'2인분 이상':'1인분 주문 가능'].filter(Boolean).join(' · ');
-  card.append(wrap,top,desc,tags);grid.append(card);
+  const keywords=document.createElement('p');keywords.className='menu-keywords';keywords.textContent=(item.tags||[]).map(t=>'#'+t).join(' ');card.append(wrap,top,desc,tags,keywords);grid.append(card);
  }
 }
 fetch('/menu.json').then(r=>{if(!r.ok)throw Error();return r.json()}).then(data=>{menus=data;renderMenu()}).catch(()=>{document.querySelector('#menu-grid').textContent='메뉴를 불러오지 못했습니다. 새로고침하거나 043-225-9595로 문의해 주세요.'});

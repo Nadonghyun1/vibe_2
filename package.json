@@ -5,5 +5,8 @@
   "dependencies": {
     "@vercel/blob": "^2.8.0",
     "korean-lunar-calendar": "^0.4.0"
+  },
+  "scripts": {
+    "build": "node build-seo.cjs"
   }
 }
