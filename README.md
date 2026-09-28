@@ -1,51 +1,134 @@
 # 노가정 홈페이지
 
-Production: https://nogajeng.vercel.app
+## 서비스 소개
 
-Domain: nogajeng.helionlife.net (Cloudflare DNS setup pending)
+청주 한식당 노가정의 음식과 100년 된 전통가옥의 따뜻한 분위기를 소개하는 홈페이지입니다.  
+손님은 메뉴와 가격, 영업시간, 오시는 길을 확인하고 온라인으로 예약을 신청할 수 있습니다.  
+사장님은 관리자 화면과 Windows 앱에서 예약을 확인하고 알림음으로 새 예약을 안내받을 수 있습니다.
 
-Static website served from `public/` on Vercel. Edit menu names, prices, notes and image mappings in `public/menu.json`. Edit page content in `public/index.html`. Styles and interactions are in `public/style.css` and `public/app.js`.
+## 배포 주소
 
-## Local preview
+- **홈페이지:** https://nogajeng.helionlife.net
+- **예약 신청:** https://nogajeng.helionlife.net/#reserve
+- **예약 조회:** https://nogajeng.helionlife.net/#booking-check
+- **관리자 화면:** https://nogajeng.helionlife.net/admin.html
+- 보조 접속 주소: https://nogajeng.vercel.app
 
-`python -m http.server 4173 --bind 127.0.0.1 --directory public`
+홈페이지 오른쪽 위의 **관리자** 버튼으로도 관리 화면에 들어갈 수 있습니다. 관리자 비밀번호는 공개 문서에 적지 않습니다.
 
-## Publish
+## 주요 기능 5가지
 
-`vercel deploy --prod --scope luo13`
+| 기능 | 설명 |
+|---|---|
+| 1. 메뉴 소개 | 음식 사진, 가격, 공깃밥 포함 여부, 최소 주문 수량을 보고 메뉴 종류별로 골라 볼 수 있습니다. |
+| 2. 매장 안내 | 매장 사진, 영업시간, 주소, 지도와 전화·문자 문의 기능을 제공합니다. |
+| 3. 온라인 예약 | 방문 날짜·시간·인원을 신청하고, 예약자 이름과 휴대폰 번호로 상태를 조회합니다. 예약한 브라우저에서는 취소할 수 있습니다. |
+| 4. 예약 관리 | 사장님이 예약을 확정·취소·이용 완료 처리하고, 날짜별로 새 예약 접수를 마감할 수 있습니다. |
+| 5. 새 예약 소리 알림 | 알림을 켜면 15초마다 예약을 확인합니다. 알림음 20종 또는 직접 등록한 MP3·WAV를 선택하고, 미확인 예약이 있으면 확인할 때까지 반복 재생합니다. |
 
-GitHub repository: Nadonghyun1/vibe_2. Vercel project: luo13/nogajeng.
+**예약 신청과 예약 확정은 다릅니다.** 식당에서 가능 여부를 확인한 후 확정합니다. 다른 기기에서의 예약 변경·취소는 전화로 문의해 주세요.
 
-## Reservations
+## 사용 기술
 
-Online reservations are saved through `/api/reservations` in a private Vercel Blob store (Seoul). Guests receive a reservation ID and a private lookup code for status lookup/cancellation. Staff sign in at `/admin.html` to confirm, cancel, complete or delete ended reservations, and close dates to new requests. A pending request is never shown as confirmed.
+| 기술 | 쉽게 설명하면 |
+|---|---|
+| HTML·CSS·JavaScript | 홈페이지의 내용, 디자인, 버튼 동작을 만드는 기본 기술입니다. |
+| Node.js | 예약 요청을 처리하고 홈페이지 배포 준비 작업을 실행합니다. |
+| Vercel | 홈페이지를 인터넷에 공개하고 예약 처리 기능을 실행합니다. |
+| Vercel Blob | 예약 정보를 공개되지 않는 저장 공간에 보관합니다. |
+| Cloudflare DNS | 홈페이지를 `nogajeng.helionlife.net` 주소에 연결합니다. |
+| Electron | Windows용 관리자 앱을 만듭니다. |
+| Capacitor | 안드로이드 시험용 관리자 앱을 만듭니다. |
+| Playwright | 모바일 화면과 예약 화면이 올바르게 동작하는지 자동으로 점검합니다. |
 
-Admin credentials are in `.private/관리자-접속안내.txt`, excluded from Git and deployment. Keep this file private. Secrets live in Vercel production environment variables. To rotate the administrator password, update `ADMIN_PASSWORD_HASH` with SHA-256 of a new strong password and rotate `SESSION_SECRET`, then redeploy. Rotating the session secret invalidates admin sessions; existing guest lookup codes still work, but old create-request retry keys should not be reused.
+## 실행 방법
 
-No automatic SMS/email is sent. Staff must check the admin dashboard and can use its phone/SMS links to contact guests. Purchases, payments and ordering are excluded. Email is deferred by agreement.
+### 일반 사용자
 
-The API validates Korea-time dates, the 90-day booking window, Seollal/Chuseok holidays, half-hour time slots 10:00–20:30, 1–100 guests, phone number and explicit consent. The staff confirms seating availability manually; submissions do not reserve automatic inventory. Private state updates use consistent reads and ETag conditional writes/retries to avoid lost updates. The GET response's weak ETag prefix is removed before conditional writes. Random create request keys provide idempotent retries; session cookies are HttpOnly/Secure/SameSite=Strict, and mutations require an allowed Origin. Authentication/lookup/create rate limits are persisted.
+별도 설치 없이 위의 **홈페이지 주소**를 누르면 됩니다. 휴대폰에서도 이용할 수 있습니다.
 
-`/api/cleanup` is authenticated with `CRON_SECRET` and scheduled daily at 18:00 UTC. Records past 30 days after the visit are removed, also during subsequent writes. Dates closed by staff do not cancel existing requests. Consent and contact details are stored only in the private store; IPs are HMAC-hashed for short-term abuse limits.
+### 내 컴퓨터에서 홈페이지 화면 미리 보기
 
-## Pending content
+아래 방법은 프로젝트 파일을 내려받은 사람을 위한 방법입니다. **Node.js와 Python 3**이 설치되어 있어야 합니다.
 
-- Egg custard price (shown as phone inquiry).
-- Whether fried shrimp includes udon; keep shrimp as a text menu until confirmed.
-- Deodeok photo (text menu shown).
-- Parking details (phone inquiry).
-- No claim of government certification or grant approval is published.
-- The 100-year history refers to the house, not the duration of restaurant operation.
-- User-approved retouched venue images are labeled as retouched; original files remain untouched.
+1. 프로젝트 폴더에서 터미널을 엽니다. 현재 작업 PC의 저장소 폴더는 `C:\codex\vibe_2\vibe_2`입니다. 다른 PC에서는 내려받은 폴더를 사용하세요.
+2. 아래 명령을 한 줄씩 실행합니다.
 
-## DNS
+```powershell
+npm install
+npm run build
+python -m http.server 4173 --bind 127.0.0.1 --directory public
+```
 
-Cloudflare: CNAME `nogajeng` → `d8160e39a44ec6b1.vercel-dns-017.com`, DNS only (proxy disabled), TTL Auto.
-Do not change root domain records or nameservers.
-Verify: `vercel domains verify nogajeng.helionlife.net --scope luo13`
+3. 인터넷 브라우저에서 **http://127.0.0.1:4173**을 엽니다.
+4. 미리 보기를 종료하려면 터미널에서 **Ctrl+C**를 누릅니다.
 
-## Validation
+이 미리 보기는 디자인과 메뉴 확인용입니다. 예약 저장과 관리자 로그인에 필요한 서버 기능은 실행되지 않습니다. 예약 기능은 배포된 홈페이지에서 이용할 수 있습니다.
 
-`node check-site.cjs` validates deployed menu count/filtering, image load, reservation bounds, mobile overflow and reduced motion with Edge/Playwright.
+### Windows 관리자 앱 실행
 
-`node --test test-reservations.cjs` validates booking dates, holidays, inputs, rate limits and session authentication. `node check-booking-live.cjs` performs an actual synthetic booking/confirm/lookup/cancel/idempotency/date-closure check and removes only its own test records. It reads the admin password from the ignored local file and sends no messages.
+앱 실행 파일을 전달받았다면 `Nogajeng-Manager-1.0.0.exe`를 실행하세요. 실행 파일은 GitHub 소스에 포함되어 있지 않습니다.
+
+소스에서 실행하려면 프로젝트 폴더에서 다음 명령을 입력합니다.
+
+```powershell
+npm install --prefix apps/desktop
+npm start --prefix apps/desktop
+```
+
+로그인한 뒤 **알림음 선택 → 소리 테스트 → 알림 켜기** 순서로 설정합니다. 창의 X 버튼을 누르면 작업표시줄 알림 영역에 남습니다. 완전히 종료하려면 해당 아이콘의 메뉴에서 **앱 완전히 종료**를 선택합니다.
+
+Windows 실행 파일을 새로 만들 때는 다음 명령을 사용합니다.
+
+```powershell
+npm run dist --prefix apps/desktop
+```
+
+만들어진 파일은 `artifacts/desktop/`에 저장됩니다. 자세한 안내는 [관리자 앱 사용 안내](docs/admin-apps.md)를 참고하세요.
+
+## 운영 시 알아둘 점
+
+- 구매·결제 기능과 자동 문자·카카오 알림톡 발송은 제공하지 않습니다.
+- 안드로이드 앱은 시험용 APK 빌드까지 완료한 상태입니다. **앱을 닫았을 때 받는 푸시는 Firebase 연결과 추가 개발·실기기 검증이 필요합니다.**
+- 웹 알림은 화면 종료·휴대폰 잠금 시 중단될 수 있습니다. Windows 앱도 PC 종료·절전·연결 끊김·로그인 만료 시 새 예약을 감지할 수 없습니다.
+- 관리자 로그인은 8시간 동안 유지됩니다. 만료되면 다시 로그인하고 알림 상태를 확인하세요.
+- 직접 등록한 음원과 알림 확인 기록은 해당 기기에 저장됩니다. 다른 기기와 자동으로 공유하지 않습니다.
+- 메뉴·주소 등 공개 내용과 달리, 예약 정보는 관리자 인증을 거쳐 확인합니다. 예약 정보는 방문일로부터 30일이 지난 뒤 정리됩니다.
+- '100년'은 가옥의 역사를 뜻하며, 식당 운영 기간을 뜻하지 않습니다.
+
+## 파일을 수정하는 위치
+
+| 바꾸려는 내용 | 파일 |
+|---|---|
+| 메뉴 이름·가격·설명·사진 연결 | `public/menu.json` |
+| 홈페이지 소개·주소·연락처 | `public/index.html` |
+| 홈페이지 디자인 | `public/style.css` |
+| 검색 제목·설명·사이트맵 생성 | `build-seo.cjs` |
+| 예약 처리 | `api/reservations.js`, `lib/reservations.cjs` |
+| 관리자 화면·소리 알림 | `public/admin.html`, `public/admin.js`, `public/admin-alerts.js` |
+
+메뉴나 검색 정보를 수정한 후에는 `npm run build`를 실행합니다. 변경한 소스를 연결된 GitHub 저장소의 `main` 브랜치에 올리면 Vercel이 자동 배포합니다.
+
+## 비밀번호와 환경 설정
+
+예약 서버에는 아래 환경변수가 필요합니다. 환경변수는 비밀번호 같은 설정값을 공개 코드 밖에 보관하는 방법입니다.
+
+| 이름 | 용도 |
+|---|---|
+| `ADMIN_PASSWORD_HASH` | 관리자 비밀번호를 확인하는 변환값 |
+| `SESSION_SECRET` | 로그인 상태를 보호하는 비밀키 |
+| `CRON_SECRET` | 예약 정보 자동 정리 작업의 인증키 |
+| `BLOB_READ_WRITE_TOKEN` | 비공개 예약 저장소 접근키 |
+| `SITE_URL` | 홈페이지 대표 주소 — 비밀값 아님 |
+
+배포 서버에서는 Vercel의 환경변수 설정에 등록합니다. 실제 값을 채울 때는 `.env.example`을 참고하세요. `.env` 계열 파일과 `.private/` 폴더는 Git에서 제외하며, 실제 비밀번호나 키를 README·소스·GitHub에 적지 않습니다.
+
+## 기본 점검
+
+```powershell
+node --test test-reservations.cjs
+node check-alerts.cjs
+node check-desktop.cjs
+```
+
+첫 번째는 예약 입력 규칙을, 나머지는 알림 화면과 Windows 앱 동작을 점검합니다. 알림 화면 점검에는 Microsoft Edge가 필요하며, Windows 앱 점검 전에는 앱 의존성을 설치해야 합니다.
