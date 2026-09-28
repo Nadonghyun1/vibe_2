@@ -4,10 +4,6 @@ node_modules
 __pycache__
 .env*
 !.env.example
-
-.vercel
-.env*
-
 artifacts/
 apps/mobile/android/.gradle/
 apps/mobile/android/local.properties
