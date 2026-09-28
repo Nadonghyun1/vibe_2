@@ -6,7 +6,7 @@ module.exports=async(req,res)=>{
  try{
   if(!process.env.SESSION_SECRET||!process.env.ADMIN_PASSWORD_HASH)throw R.fail('예약 시스템을 준비 중입니다. 전화로 문의해 주세요.',503);
   if(req.method!=='POST'){res.setHeader('Allow','POST');return send(405,{error:'지원하지 않는 요청입니다.'});}
-  const origin=req.headers.origin;const allowed=['https://nogajeng.vercel.app','https://nogajeng.helionlife.net'];if(!allowed.includes(origin))throw R.fail('이 홈페이지에서 다시 시도해 주세요.',403);
+  const origin=req.headers.origin;const allowed=['https://nogajeng.vercel.app','https://nogajeng.helionlife.net','https://nogajeng-luo13.vercel.app','https://nogajeng-git-main-luo13.vercel.app'];for(const host of [process.env.VERCEL_URL,process.env.VERCEL_PROJECT_PRODUCTION_URL])if(host&&/^[a-z0-9-]+\.vercel\.app$/.test(host))allowed.push('https://'+host);if(!allowed.includes(origin))throw R.fail('이 홈페이지에서 다시 시도해 주세요.',403);
   if(!String(req.headers['content-type']).includes('application/json'))throw R.fail('올바른 요청 형식이 아닙니다.',415);
   if(Number(req.headers['content-length']||0)>8192)throw R.fail('요청이 너무 큽니다.',413);
   const b=typeof req.body==='string'?JSON.parse(req.body):req.body;if(!b||JSON.stringify(b).length>8192)throw R.fail('올바른 요청이 아닙니다.');
