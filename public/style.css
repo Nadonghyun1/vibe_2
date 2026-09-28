@@ -5,3 +5,5 @@
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{transition:none!important;animation:none!important}}
 
 .menu-keywords{font-size:.78rem;line-height:1.8;color:#536b62;margin:8px 0 0;overflow-wrap:anywhere}.menu-card{scroll-margin-top:100px}
+
+.header-actions{display:flex;align-items:center;gap:20px}.admin-entry{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:8px 13px;border:1px solid #82988b;border-radius:4px;font-size:13px;color:var(--pine)}.admin-entry:hover{background:#e6ece5}@media(max-width:700px){.header-actions{gap:12px}.header-actions .nav-book span{margin-left:6px}.admin-entry{font-size:12px;padding:8px 10px}}
