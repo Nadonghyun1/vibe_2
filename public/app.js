@@ -7,7 +7,9 @@ document.querySelector('#year').textContent=new Date().getFullYear();
 let menus=[];
 function renderMenu(category='전체'){
  const grid=document.querySelector('#menu-grid');grid.replaceChildren();
- for(const item of menus.filter(m=>category==='전체'||m.category===category)){
+ const visible=menus.filter(m=>category==='전체'||m.category===category);
+ if(!visible.length){const notice=document.createElement('p');notice.textContent=menus.length?'해당 종류에 등록된 메뉴가 없습니다. 다른 메뉴를 선택해 주세요.':'등록된 메뉴가 없습니다. 043-225-9595로 문의해 주세요.';grid.append(notice);return;}
+ for(const item of visible){
   const card=document.createElement('article');card.className='menu-card';card.id='menu-'+item.slug;
   const wrap=document.createElement('div');wrap.className='menu-image';
   const img=document.createElement('img');img.src=item.image;img.alt='청주 노가정 '+item.name;img.loading='lazy';img.width=700;img.height=525;wrap.append(img);
