@@ -1,0 +1,162 @@
+[
+  {
+    "slug": "octopus",
+    "name": "직화 쭈꾸미볶음",
+    "price": 11000,
+    "category": "대표 메뉴",
+    "note": "공깃밥 포함",
+    "description": "직화로 볶아낸 쭈꾸미를 든든한 한 끼로.",
+    "minimum": 2,
+    "image": "/images/octopus.webp"
+  },
+  {
+    "slug": "bulgogi",
+    "name": "파불고기",
+    "price": 13000,
+    "category": "대표 메뉴",
+    "note": "공깃밥 별도",
+    "description": "식사로도, 술안주로도 인기 있는 메뉴.",
+    "minimum": 2,
+    "image": "/images/bulgogi.webp"
+  },
+  {
+    "slug": "jussam",
+    "name": "쭈삼불고기",
+    "price": 13000,
+    "category": "대표 메뉴",
+    "note": "공깃밥 별도",
+    "description": "쭈꾸미와 삼겹살을 함께 즐기는 한 접시.",
+    "minimum": 2,
+    "image": "/images/jussam.webp"
+  },
+  {
+    "slug": "spicy-ribs",
+    "name": "동인동 매운찜갈비",
+    "price": 22000,
+    "category": "대표 메뉴",
+    "note": "공깃밥 별도",
+    "description": "노가정의 시작을 함께한 창업 메뉴.",
+    "minimum": 2,
+    "image": "/images/spicy-ribs.webp"
+  },
+  {
+    "slug": "duck",
+    "name": "오리삼합철판구이",
+    "price": 18000,
+    "category": "대표 메뉴",
+    "note": "공깃밥 별도",
+    "description": "더덕·오리·쭈꾸미의 조화로운 만남.",
+    "minimum": 2,
+    "image": "/images/duck.webp"
+  },
+  {
+    "slug": "iron-octopus",
+    "name": "쭈꾸미철판볶음",
+    "price": 16000,
+    "category": "대표 메뉴",
+    "note": "공깃밥 별도",
+    "description": "쭈꾸미·삼겹살·통새우를 철판 위에.",
+    "minimum": 2,
+    "image": "/images/iron-octopus.webp"
+  },
+  {
+    "slug": "ribs",
+    "name": "석갈비",
+    "price": 17000,
+    "category": "대표 메뉴",
+    "note": "공깃밥 별도",
+    "description": "함께 나누기 좋은 갈비 한 상.",
+    "minimum": 2,
+    "image": "/images/ribs.webp"
+  },
+  {
+    "slug": "cutlet",
+    "name": "수제돈까스",
+    "price": 11000,
+    "category": "식사 메뉴",
+    "note": "밥 포함",
+    "description": "한 끼 든든하게 즐기는 수제돈까스.",
+    "minimum": 1,
+    "image": "/images/cutlet.webp"
+  },
+  {
+    "slug": "cheese",
+    "name": "통모짜렐라치즈돈까스",
+    "price": 13000,
+    "category": "식사 메뉴",
+    "note": "밥 포함",
+    "description": "통모짜렐라 치즈를 담은 돈까스.",
+    "minimum": 1,
+    "image": "/images/cheese.webp"
+  },
+  {
+    "slug": "pho",
+    "name": "소고기쌀국수",
+    "price": 10000,
+    "category": "식사 메뉴",
+    "note": "",
+    "description": "따뜻한 국물과 소고기를 함께.",
+    "minimum": 1,
+    "image": "/images/pho.webp"
+  },
+  {
+    "slug": "soup",
+    "name": "수제 갈비탕",
+    "price": 14000,
+    "category": "식사 메뉴",
+    "note": "공깃밥 포함",
+    "description": "갈비와 따뜻한 국물로 채우는 한 끼.",
+    "minimum": 1,
+    "image": "/images/soup.webp"
+  },
+  {
+    "slug": "soba",
+    "name": "메밀소바",
+    "price": 10000,
+    "category": "식사 메뉴",
+    "note": "",
+    "description": "시원하게 즐기는 메밀소바.",
+    "minimum": 1,
+    "image": "/images/soba.webp"
+  },
+  {
+    "slug": "pizza",
+    "name": "고르곤졸라피자",
+    "price": 10000,
+    "category": "곁들임",
+    "note": "",
+    "description": "함께 나누는 치즈 피자.",
+    "minimum": 1,
+    "image": "/images/pizza.webp"
+  },
+  {
+    "slug": "pizza-shrimp",
+    "name": "피자·새우튀김 세트",
+    "price": 15000,
+    "category": "곁들임",
+    "note": "",
+    "description": "피자와 새우튀김을 함께 즐기는 세트.",
+    "minimum": 1,
+    "image": "/images/pizza-shrimp.webp"
+  },
+  {
+    "slug": "dumpling",
+    "name": "메밀왕만두",
+    "price": 7000,
+    "category": "곁들임",
+    "note": "4개",
+    "description": "식사에 곁들이기 좋은 왕만두.",
+    "minimum": 1,
+    "image": "/images/dumpling.webp"
+  },
+  {
+    "slug": "roll",
+    "name": "메밀전병",
+    "price": 7000,
+    "category": "곁들임",
+    "note": "2개",
+    "description": "함께 나누기 좋은 메밀전병.",
+    "minimum": 1,
+    "image": "/images/roll.webp"
+  }
+]
