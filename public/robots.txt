@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 Disallow: /api/
-Sitemap: https://nogajeng.vercel.app/sitemap.xml
+Sitemap: https://nogajeng.helionlife.net/sitemap.xml

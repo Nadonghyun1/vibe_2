@@ -1,5 +1,5 @@
 const fs=require('fs');
-const base=process.env.SITE_URL||'https://nogajeng.vercel.app';
+const base=process.env.SITE_URL||'https://nogajeng.helionlife.net';
 const menus=JSON.parse(fs.readFileSync('public/menu.json'));
 const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 let html=fs.readFileSync('public/index.html','utf8');
