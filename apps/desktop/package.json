@@ -1,0 +1,35 @@
+{
+  "name": "nogajeng-manager",
+  "version": "1.0.0",
+  "private": true,
+  "description": "노가정 예약 관리자",
+  "author": "Nogajeng",
+  "main": "main.cjs",
+  "scripts": {
+    "start": "electron .",
+    "dist": "electron-builder --win portable"
+  },
+  "devDependencies": {
+    "electron": "44.4.5",
+    "electron-builder": "26.15.3"
+  },
+  "build": {
+    "appId": "net.helionlife.nogajeng.manager",
+    "productName": "Nogajeng Manager",
+    "directories": {
+      "output": "../../artifacts/desktop"
+    },
+    "files": [
+      "main.cjs",
+      "preload.cjs",
+      "tray.png"
+    ],
+    "win": {
+      "target": "portable",
+      "signAndEditExecutable": false
+    },
+    "portable": {
+      "artifactName": "Nogajeng-Manager-${version}.exe"
+    }
+  }
+}

@@ -7,3 +7,10 @@ __pycache__
 
 .vercel
 .env*
+
+artifacts/
+apps/mobile/android/.gradle/
+apps/mobile/android/local.properties
+apps/mobile/android/app/build/
+apps/mobile/android/build/
+apps/mobile/android/app/google-services.json
