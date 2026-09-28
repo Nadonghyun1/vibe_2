@@ -1,7 +1,9 @@
 .vercel
 node_modules
+.private/
 __pycache__
 .env*
 !.env.example
 
 .vercel
+.env*

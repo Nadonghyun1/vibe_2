@@ -1,5 +1,9 @@
 {
   "devDependencies": {
     "@playwright/test": "^1.63.0"
+  },
+  "dependencies": {
+    "@vercel/blob": "^2.8.0",
+    "korean-lunar-calendar": "^0.4.0"
   }
 }

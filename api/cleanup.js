@@ -1,0 +1,2 @@
+const R=require('../lib/reservations.cjs');
+module.exports=async(req,res)=>{res.setHeader('Cache-Control','no-store');if(!process.env.CRON_SECRET||!R.equal(req.headers.authorization||'','Bearer '+process.env.CRON_SECRET))return res.status(401).json({error:'Unauthorized'});try{await R.transaction(()=>({ok:true}));return res.json({ok:true})}catch{return res.status(503).json({error:'Cleanup failed'})}};

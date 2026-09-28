@@ -1,0 +1,7 @@
+const assert=require('node:assert/strict');const {test}=require('node:test');const R=require('./lib/reservations.cjs');
+const now=Date.parse('2026-09-24T09:00:00+09:00');const valid={name:'검증',phone:'010-0000-0000',date:'2026-09-28',time:'12:00',guests:4,note:'',consent:true};
+test('Korean holiday and normal dates',()=>{assert.equal(R.holiday('2026-09-25'),true);assert.equal(R.holiday('2026-02-17'),true);assert.equal(R.holiday('2026-09-28'),false)});
+test('Reject invalid and out-of-window dates',()=>{for(const date of ['2026-02-30','2026-09-23','2027-01-01','wrong'])assert.throws(()=>R.validate({...valid,date},now))});
+test('Reject closed days, out of hours, invalid people and missing consent',()=>{for(const patch of [{date:'2026-09-25'},{time:'09:30'},{time:'21:00'},{time:'12:17'},{guests:101},{guests:0},{guests:1.5},{consent:false},{phone:'1234'},{name:'  '},{website:'spam'}])assert.throws(()=>R.validate({...valid,...patch},now))});
+test('Accept normalized booking with bounded input',()=>{const b=R.validate(valid,now);assert.equal(b.phone,'01000000000');assert.equal(b.guests,4)});
+test('Rate limiter and session authenticity',()=>{const state={rates:{}};R.rate(state,'x',1,15);assert.throws(()=>R.rate(state,'x',1,15));process.env.SESSION_SECRET='unit-test-only';const cookie=R.sessionCookie();assert.equal(R.admin({headers:{cookie:'ng_admin='+cookie}}),true);assert.equal(R.admin({headers:{cookie:'ng_admin='+cookie+'bad'}}),false)});
