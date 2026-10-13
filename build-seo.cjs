@@ -4,7 +4,7 @@ const menus=JSON.parse(fs.readFileSync('public/menu.json'));
 const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 let html=fs.readFileSync('public/index.html','utf8');
 const title='노가정 | 청주 상당구 한식당 · 직화쭈꾸미 · 가족 외식·단체 예약';
-const desc='청주 상당구 100년 된 전통가옥의 한식당 노가정. 직화 쭈꾸미볶음, 쭈삼불고기, 매운찜갈비, 석갈비, 갈비탕과 돈까스. 가족 외식·단체 모임 최대 100명, 온라인 예약. 10:00~21:00, 설날·추석 당일 휴무. 043-225-9595.';
+const desc='청주 상당구 한식당 노가정. 직화쭈꾸미·갈비탕·돈까스, 가족 외식과 최대 100명 단체 모임. 예약 043-225-9595.';
 html=html.replace(/<title>.*?<\/title>/,`<title>${title}</title>`).replace(/<meta name="description" content="[^"]*">/,`<meta name="description" content="${desc}">`);
 html=html.replace(/<!-- SEO START -->[\s\S]*?<!-- SEO END -->/,'');
 const restaurant={'@context':'https://schema.org','@type':'Restaurant','@id':base+'/#restaurant',name:'노가정',url:base+'/',description:desc,telephone:'+82-43-225-9595',servesCuisine:'한식',image:base+'/images/exterior-retouched.webp',address:{'@type':'PostalAddress',streetAddress:'상당구 사직대로361번길 174',addressLocality:'청주시',addressRegion:'충청북도',addressCountry:'KR'},openingHoursSpecification:[{'@type':'OpeningHoursSpecification',dayOfWeek:['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'],opens:'10:00',closes:'21:00'}],acceptsReservations:true,hasMenu:{'@type':'Menu',name:'노가정 메뉴',url:base+'/#menu',hasMenuSection:['대표 메뉴','식사 메뉴','곁들임'].map(category=>({'@type':'MenuSection',name:category,hasMenuItem:menus.filter(m=>m.category===category).map(m=>({'@type':'MenuItem',name:m.name,description:[m.description,m.note,m.minimum===2?'2인분 이상 주문':'1인분 주문 가능'].filter(Boolean).join(' '),image:base+m.image,url:base+'/#menu-'+m.slug,offers:{'@type':'Offer',price:m.price,priceCurrency:'KRW'}}))}))}};
